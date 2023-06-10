@@ -32,32 +32,75 @@
     .button {
       width: 50px;
       height: 20px;
-      font-size: medium;
+      font-size: 16px;
       border: 1px solid black;
     }
-
     .attribution { font-size: 11px; text-align: center; }
     .attribution a { color: hsl(228, 45%, 44%); }
   </style>
 </head>
 <body>
   <div class="calculator">
-    <div class="display">0</div>
-    <div class="button">1</div>
-    <div class="button">2</div>
-    <div class="button">3</div>
-    <div class="button">4</div>
-    <div class="button">5</div>
-    <div class="button">6</div>
-    <div class="button">7</div>
-    <div class="button">8</div>
-    <div class="button">9</div>
-    <div class="button">*</div>
-    <div class="button">0</div>
-    <div class="button">.</div>
-    <div class="button">/</div>
-    <div class="button">=</div>
+
+    <input type="text" class="calculator-screen" value="0" disabled />
+  
+    <div class="calculator-keys">
+  
+      <button type="button" class="operator" value="+">+</button>
+      <button type="button" class="operator" value="-">-</button>
+      <button type="button" class="operator" value="*">&times;</button>
+      <button type="button" class="operator" value="/">&divide;</button>
+  
+      <button type="button" value="7">7</button>
+      <button type="button" value="8">8</button>
+      <button type="button" value="9">9</button>
+  
+  
+      <button type="button" value="4">4</button>
+      <button type="button" value="5">5</button>
+      <button type="button" value="6">6</button>
+  
+  
+      <button type="button" value="1">1</button>
+      <button type="button" value="2">2</button>
+      <button type="button" value="3">3</button>
+  
+  
+      <button type="button" value="0">0</button>
+      <button type="button" class="decimal" value=".">.</button>
+      <button type="button" class="all-clear" value="all-clear">AC</button>
+  
+      <button type="button" class="equal-sign" value="=">=</button>
+  
+    </div>
   </div>
+  <script>
+    var calculator = {
+  display: document.querySelector(".display"),
+  buttons: Array.from(document.querySelectorAll(".button")),
+      
+  onButtonClick: function(event) {
+    var button = event.target;
+    var value = button.textContent || button.value;
+
+    if (value === "=") {
+      var expression = calculator.display.textContent;
+      var result = eval(expression);
+      calculator.display.textContent = result;
+    } else {
+      calculator.display.textContent += value;
+    }
+  },
+
+      init: function() {
+        this.buttons.forEach(function(button) {
+          button.addEventListener("click", calculator.onButtonClick);
+        });
+      }
+    };
+
+    calculator.init();
+  </script>
   <div class="attribution">
     Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
     Coded by <a href="https://ed55567.github.io/">Emmanuel Daniels</a>.
