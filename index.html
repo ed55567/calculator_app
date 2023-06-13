@@ -8,9 +8,7 @@
   
   <title>Frontend Mentor | Calculator app</title>
 
-  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
   <style>
-
 html {
   font-size: 62.5%;
   box-sizing: border-box;
@@ -21,63 +19,41 @@ html {
   padding: 0;
   box-sizing: inherit;
 }
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-      background-color: #434A59;
-    }
 
-    .calculator {
-      background: #242D44;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 400px;
-      padding: 30px;
-    }
-
-    .display {
-      display: flex;
-      align-items: center;
-      justify-content: right;
-      width: 100%;
-      font-size: 5rem;
-      height: 80px;
-      border: none;
-      background-color: #252525;
-      color: #fff;
-      text-align: right;
-      padding-right: 20px;
-      padding-left: 10px;
-      margin-bottom: 20px;
-    }
-
-    .button {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 60px;
-      background-color: #EAE3DC;
-      border-radius: 3px;
-      border: 1px solid #c4c4c4;
-      font-size: 3rem;
-      color: #333;
-      background-image: linear-gradient(to bottom,transparent,transparent 50%,rgba(0,0,0,.04));
-      filter: drop-shadow(1px 3px 1px #85807c);
-      text-shadow: 0 1px rgba(255,255,255,.4);
-    }
-
-    .button:hover {
-      background-color: #c9c5c5;
-    }
-
-    .operator {
-     color: #337cac;
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #434A59;
 }
 
-#all-clear {
+.calculator {
+  background: #242D44;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  padding: 30px;
+}
+
+.display {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
+  font-size: 5rem;
+  height: 80px;
+  border: none;
+  background-color: #252525;
+  color: #fff;
+  text-align: right;
+  padding-right: 20px;
+  padding-left: 10px;
+  margin-bottom: 20px;
+}
+
+.button {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -86,6 +62,21 @@ html {
   border-radius: 3px;
   border: 1px solid #c4c4c4;
   font-size: 3rem;
+  color: #333;
+  background-image: linear-gradient(to bottom, transparent, transparent 50%, rgba(0,0,0,.04));
+  filter: drop-shadow(1px 3px 1px #85807c);
+  text-shadow: 0 1px rgba(255,255,255,.4);
+}
+
+.button:hover {
+  background-color: #c9c5c5;
+}
+
+.operator {
+  color: #337cac;
+}
+
+#all-clear {
   background-color: #A2B2E1;
   filter: drop-shadow(1px 3px 1px #5d698b);
   border-color: #5d698b;
@@ -100,18 +91,13 @@ html {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 60px;
-  background-color: #EAE3DC;
-  border-radius: 3px;
-  border: 1px solid #c4c4c4;
-  font-size: 3rem;
   background-color: #F96B5B;
   filter: drop-shadow(1px 3px 1px #793129);
   border-color: #793129;
   color: #fff;
-  height: 100%;
-  grid-area: 2 / 4 / 6 / 5;
+  grid-column: span 4; 
 }
+
 
 #equal-sign:hover {
   background-color: #793129;
@@ -124,67 +110,74 @@ html {
   grid-column-gap: 20px;
 }
 
-    .attribution { font-size: 11px; text-align: center; }
-    .attribution a { color: hsl(228, 45%, 44%); }
+.attribution {
+  font-size: 11px;
+  text-align: center;
+}
+
+.attribution a {
+  color: hsl(228, 45%, 44%);
+}
+
   </style>
 </head>
 <body>
   <div class="calculator">
-
-    <div class="display">0</div>  
-  <div class="calculator-keys">
-      <div class="button">1</div>
-      <div class="button">2</div>
-      <div class="button">3</div>
-      <div class="button">+</div>
-      <div class="button">4</div>
-      <div class="button">5</div>
-      <div class="button">6</div>
-      <div class="button">-</div>
-      <div class="button">7</div>
-      <div class="button">8</div>
-      <div class="button">9</div>
-      <div class="button">*</div>
-      <div class="button">0</div>
-      <div class="button">.</div>
-      <div class="button">/</div>
-      <div id="all-clear" class="button">AC</div>
-      <div id="equal-sign" class="button">=</div>
-  </div>
+    <div class="display"  aria-live="polite">0</div>
+    <div class="calculator-keys">
+      <button class="button">1</button>
+      <button class="button">2</button>
+      <button class="button">3</button>
+      <button class="button operator">+</button>
+      <button class="button">4</button>
+      <button class="button">5</button>
+      <button class="button">6</button>
+      <button class="button operator">-</button>
+      <button class="button">7</button>
+      <button class="button">8</button>
+      <button class="button">9</button>
+      <button class="button operator">*</button>
+      <button class="button">0</button>
+      <button class="button">.</button>
+      <button class="button operator">/</button>
+      <button id="all-clear" class="button">AC</button>
+      <button id="equal-sign" class="button operator">=</button>
+    </div>
   </div>
   <script>
 
-  const allClearButton = document.querySelector('[data-all-clear]')
+document.addEventListener('DOMContentLoaded', function() {
+  const display = document.querySelector('.display');
+  const buttons = Array.from(document.querySelectorAll('.button'));
+  const allClearButton = document.querySelector('#all-clear');
 
-    var calculator = {
-  display: document.querySelector(".display"),
-  buttons: Array.from(document.querySelectorAll(".button")),
-      
-  onButtonClick: function(event) {
-    var button = event.target;
-    var value = button.textContent || button.value;
+  buttons.forEach(function(button) {
+    button.addEventListener('click', onButtonClick);
+  });
 
-    if (value === "=") {
-      var expression = calculator.display.textContent;
-      var result = eval(expression);
-      calculator.display.textContent = result;
+  allClearButton.addEventListener('click', function() {
+    display.textContent = ' ';
+  });
+
+  function onButtonClick(event) {
+    const button = event.target;
+    const value = button.textContent;
+
+    if (value === '=') {
+      const expression = display.textContent;
+      const result = calculate(expression);
+      display.textContent = result;
     } else {
-      calculator.display.textContent += value;
+      display.textContent += value;
     }
-  },
+  }
 
-
-      init: function() {
-        this.buttons.forEach(function(button) {
-          button.addEventListener("click", calculator.onButtonClick);
-        });
-      }
-    };
+  function calculate(expression) {
+    return eval(expression);
+  }
+});
 
  
- 
-
-    calculator.init();
   </script>
   <div class="attribution">
     Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
